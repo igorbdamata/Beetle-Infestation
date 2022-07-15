@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canAttack)
+        if (Input.GetKeyDown(KeyCode.E) && canAttack && !GetComponent<PlayerLife>().isInvencible)
         {
             anim.Play("Attack");
         }
@@ -31,7 +31,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void StartAttack()
     {
-        print("Começou atk");
         isAtacking = true;
         canAttack = false;
         StartCoroutine(AnimationSpeedController());
@@ -44,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
         Collider2D enemyToAttack = nearestEnemyIn(enemies);
         if (enemyToAttack != null)
         {
-            print("Atacou " + enemyToAttack.gameObject.name);
+            enemyToAttack.GetComponent<EnemyLife>().AddDamage(weapon.damage);
         }
     }
 
@@ -70,7 +69,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void EndAttack()
     {
-        print("Terminou ataque");
         isAtacking = false;
         StartCoroutine(AttackCooldown());
     }
@@ -91,6 +89,15 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(weapon.attackCooldown);
         canAttack = true;
+    }
+
+    public void StopAttack()
+    {
+        isAtacking = false;
+        StopAllCoroutines();
+        canAttack = true;
+        anim.speed = 1;
+        isAtacking = false;
     }
 
     private void OnDrawGizmosSelected()

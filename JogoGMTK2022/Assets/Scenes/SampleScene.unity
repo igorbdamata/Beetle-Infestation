@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 361777675}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,6 +764,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalLife: 100
   invencibleCooldown: 2
+  blinkTimes: 5
+  spritesToBlink:
+  - {fileID: 1089044151}
   deadAnimationTime: 0
   shakeTime: 0.5
   gainCurve:
@@ -2704,8 +2707,10 @@ GameObject:
   - component: {fileID: 1999120037}
   - component: {fileID: 1999120036}
   - component: {fileID: 1999120035}
+  - component: {fileID: 1999120038}
+  - component: {fileID: 1999120039}
   m_Layer: 7
-  m_Name: Square
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2802,6 +2807,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999120038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999120034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cb4036babe80742919268f87bf7966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalLife: 15
+  minScore: 1
+  maxScore: 10
+--- !u!114 &1999120039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999120034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8061f921bde759a459a4ae34c9a5f11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &2008431255
 GameObject:
   m_ObjectHideFlags: 0
