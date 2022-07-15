@@ -5,6 +5,7 @@ public class DATA : MonoBehaviour
 {
     public static DATA d;
 
+    public int playerHighScore { get; set; }
     [Header("Configs")]
     public float musicVolume = 1;
     public float SFXVolume = 1;

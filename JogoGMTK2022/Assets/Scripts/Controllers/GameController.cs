@@ -13,12 +13,15 @@ public class GameController : MonoBehaviour
     public bool isPaused { get; set; }
     public bool inLoading { get; set; }
     public int currentScene { get; private set; }
+    public int playerScore { get; set; }
 
     [Space(20)]
     [Header("Title screen")]
     [SerializeField] private Slider ambientationVolSlider, musicVolSlider, SFXVolSlider;
     public EventSystem eventSystem { get; private set; }
     public Camera mainCamera { get; private set; }
+    public CameraShakeController camShake { get; private set; }
+    
 
     void Awake()
     {
@@ -26,6 +29,7 @@ public class GameController : MonoBehaviour
         else { Destroy(gameObject); }
         eventSystem = FindObjectOfType<EventSystem>();
         mainCamera = Camera.main;
+        camShake = FindObjectOfType<CameraShakeController>();
     }
     private void Start()
     {
