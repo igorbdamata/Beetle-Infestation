@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        weaponSprite.sprite = weapon.sprite;
+        weaponSprite.GetComponent<GenericAnimator>().sprites.AddRange(weapon.sprite);
     }
 
     private void Update()

@@ -38,4 +38,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  weaponSprite: {fileID: 21300000, guid: 8a1132ec26e625e4786ac96514f1cd04, type: 3}
+  weaponSprite:
+  - {fileID: 8659984552620174791, guid: ac4aa9db42935994ea562efa6429c618, type: 3}
+  - {fileID: -8140776415457318755, guid: ac4aa9db42935994ea562efa6429c618, type: 3}

@@ -8,10 +8,10 @@ public class Weapon : ScriptableObject
     [SerializeField] private int weaponDamage;
     [SerializeField] private float weaponAttackCooldown;
     [SerializeField] private AnimationCurve weaponAttackAnimationSpeed;
-    [SerializeField] private Sprite weaponSprite;
+    [SerializeField] private Sprite[] weaponSprite;
 
     public int damage { get => weaponDamage; }
     public float attackCooldown { get => weaponAttackCooldown; }
     public AnimationCurve attackAnimationSpeed { get => weaponAttackAnimationSpeed; }
-    public Sprite sprite { get => weaponSprite; }
+    public Sprite[] sprite { get => weaponSprite; }
 }
