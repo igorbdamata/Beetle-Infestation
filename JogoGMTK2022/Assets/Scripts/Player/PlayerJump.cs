@@ -37,18 +37,29 @@ public class PlayerJump : MonoBehaviour
 
     void Jump()
     {
-        rig.AddForce(Vector2.up * jumpForce * Time.deltaTime, ForceMode2D.Impulse);
+        rig.AddForce(Vector2.up * jumpForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
         isJumping = true;
     }
 
     void BreakJump()
     {
-        rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y * 0.4f);
+        if (rig.velocity.y > 0)
+        {
+            rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y * 0.2f);
+        }
+
         isJumping = false;
     }
 
     void CheckGround()
     {
+        if (isJumping)
+        {
+            StopCoroutine(GhostGround());
+            inGhostGround = false;
+            inGround = false;
+            return;
+        }
         Collider2D col = Physics2D.OverlapCircle(transform.position + (Vector3)groundCheckOffset, 0.1f, groundLayer);
         if (col != null)
         {
@@ -59,13 +70,7 @@ public class PlayerJump : MonoBehaviour
         else
         {
             fixedInGround = false;
-            if (inGround && !isJumping) { StartCoroutine(GhostGround()); }
-            else
-            {
-                StopCoroutine(GhostGround());
-                inGhostGround = false;
-                inGround = false;
-            }
+            StartCoroutine(GhostGround());
         }
     }
 

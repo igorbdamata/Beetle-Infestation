@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rig;
     [SerializeField] private AnimationCurve accelerationCurve;
     private float timer;
+    public bool isMoving { get => rig.velocity.x != 0; }
 
     private void Start()
     {
