@@ -39,7 +39,7 @@ public class IntroScreen : MonoBehaviour
             isChangingPosition = true;
             DATA.d.playedIntro = !DATA.d.playedIntro;
 
-            yield return Move();
+            yield return Move(); 
 
             isChangingPosition = false;
         }
