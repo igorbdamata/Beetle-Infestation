@@ -7,7 +7,6 @@ public class CameraShakeController : MonoBehaviour
 {
     public void SetShake(AnimationCurve gain, AnimationCurve freuquency, float shakeTime)
     {
-        print("Chamou");
         StartCoroutine(SetShakeIEnumerator(gain, freuquency, shakeTime));
     }
 

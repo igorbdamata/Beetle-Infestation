@@ -11,16 +11,16 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     public bool isMoving { get => direction != 0; }
     bool canMove = true;
-    float direction;
+    public float direction { get; private set; }
 
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (GetComponent<PlayerLife>().isDead) { return; }
+        if (GetComponent<PlayerLife>().isDead) { rig.velocity = Vector2.zero; return; }
         direction = Input.GetAxisRaw("Horizontal");
         if (!canMove) { return; }
         Move();

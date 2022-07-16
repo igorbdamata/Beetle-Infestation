@@ -14,11 +14,13 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isAtacking { get; private set; }
     bool canAttack = true;
-    bool alreadyAttaked=false;
+    bool alreadyAttacked = false;
+    PlayerMovement pMovement;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        pMovement = GetComponent<PlayerMovement>();
         weapon = DATA.d.weapons[DATA.d.currenteWeapon];
         weaponSprite.GetComponent<GenericAnimator>().sprites.AddRange(weapon.sprite);
     }
@@ -36,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isAtacking = true;
         canAttack = false;
-        foreach(Transform t in GameController.gc.enemies)
+        foreach (Transform t in GameController.gc.enemies)
         {
             t.GetComponent<EnemyMovement>().StopMovement();
         }
@@ -45,17 +47,21 @@ public class PlayerAttack : MonoBehaviour
 
     public void SetDamage()
     {
-        print(alreadyAttaked);
-        if (alreadyAttaked) { return; }
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + (Vector3)attackPoint, attackRadius, enemiesLayer);
+        print(alreadyAttacked);
+        if (alreadyAttacked) { return; }
+        print("a");
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + (Vector3)attackPoint * pMovement.direction, attackRadius, enemiesLayer);
+        Debug.Log(enemies.Length + " AAA");
         if (enemies.Length == 0) { return; }
         Collider2D enemyToAttack = nearestEnemyIn(enemies);
         if (enemyToAttack != null)
         {
             enemyToAttack.GetComponent<EnemyLife>().AddDamage(weapon.damage);
-            alreadyAttaked = true;
+            alreadyAttacked = true;
         }
+
     }
+
 
     Collider2D nearestEnemyIn(Collider2D[] enemies)
     {
@@ -80,11 +86,12 @@ public class PlayerAttack : MonoBehaviour
     public void EndAttack()
     {
         isAtacking = false;
+
+        alreadyAttacked = false;
         foreach (Transform t in GameController.gc.enemies)
         {
             t.GetComponent<EnemyMovement>().SetMovement();
         }
-        alreadyAttaked = false;
         StartCoroutine(AttackCooldown());
     }
 
@@ -113,7 +120,7 @@ public class PlayerAttack : MonoBehaviour
         canAttack = true;
         anim.speed = 1;
         isAtacking = false;
-        alreadyAttaked = false;
+        alreadyAttacked = false;
         foreach (Transform t in GameController.gc.enemies)
         {
             t.GetComponent<EnemyMovement>().SetMovement();
@@ -123,6 +130,6 @@ public class PlayerAttack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + (Vector3)attackPoint, attackRadius);
+        Gizmos.DrawWireSphere(transform.position + (Vector3)attackPoint * pMovement.direction, attackRadius);
     }
 }

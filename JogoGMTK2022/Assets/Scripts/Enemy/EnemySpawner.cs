@@ -83,7 +83,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     GameController.gc.finishedAllLevel = true;
                     initialSpawnedPoints.Clear();
-                    return null; }
+                    return null; 
+                }
                 initialSpawnedPoints.Add(nearestSpawnPoint);
                 spawnPoint = nearestSpawnPoint;
             }

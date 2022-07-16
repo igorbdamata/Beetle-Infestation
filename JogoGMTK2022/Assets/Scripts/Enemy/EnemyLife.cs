@@ -13,6 +13,7 @@ public class EnemyLife : MonoBehaviour
     public int currentLife { get; private set; }
 
     public bool isDead { get; private set; }
+    public bool inDamage { get; private set; }
 
 
     private void Start()
@@ -51,5 +52,14 @@ public class EnemyLife : MonoBehaviour
             Destroy(gameObject, 3f);
             return;
         }
+        StopCoroutine(DamageCooldown());
+        StartCoroutine(DamageCooldown());
+    }
+
+    IEnumerator DamageCooldown()
+    {
+        inDamage = true;
+        yield return new WaitForSeconds(1f);
+        inDamage = false;
     }
 }

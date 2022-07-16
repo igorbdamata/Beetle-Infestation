@@ -23,7 +23,7 @@ public class GroundGenerator : MonoBehaviour
         ground.GetComponent<SpriteRenderer>().size = platformSize;
         ground.GetComponent<BoxCollider2D>().size = platformSize;
 
-        if (platformSize.x > 5)
+        if (platformSize.x >= 10)
         {
             GameObject spawnPoint = Instantiate(enemySpawnPointPrefab, ground.transform);
             spawnPoint.transform.localPosition = new Vector2(0, 0.2f + 0.5f * platformSize.y);

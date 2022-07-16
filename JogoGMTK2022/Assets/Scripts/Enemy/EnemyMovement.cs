@@ -10,24 +10,29 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float speed = 500;
     Rigidbody2D rig;
-    int direction = 1;
+    public int direction { get; private set; } = 1;
     private bool canMove = false;
+    EnemyLife eLife;
+    EnemyAttack eAttack;
 
     private IEnumerator Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        eLife = GetComponent<EnemyLife>();
+        eAttack = GetComponent<EnemyAttack>();
         while (!GameController.gc.finishedAllLevel) { yield return new WaitForEndOfFrame(); }
         yield return new WaitForSeconds(0.1f);
         canMove = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (canMove)
+        if (canMove && !eLife.inDamage && (!eAttack || eAttack && !eAttack.isAtacking))
         {
             rig.velocity = new Vector2(speed * Time.deltaTime * direction, rig.velocity.y);
             CheckCollisions();
         }
+        else { rig.velocity = Vector2.zero; }
     }
 
     void CheckCollisions()

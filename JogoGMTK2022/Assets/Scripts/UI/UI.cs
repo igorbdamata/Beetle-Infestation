@@ -33,7 +33,6 @@ public class UI : MonoBehaviour
 
     public void UpdateLifeBar(PlayerLife playerLife, int totalLife)
     {
-        print((float)totalLife / (float)playerLife.currentLife + " = " + (float)totalLife + " / " + (float)playerLife.currentLife);
         lifeBar.fillAmount = (float)playerLife.currentLife / (float)totalLife;
     }
 

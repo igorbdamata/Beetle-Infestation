@@ -16,9 +16,9 @@ public class PlayerLook : MonoBehaviour
     void Update()
     {
         if (GetComponent<PlayerLife>().isDead) { return; }
-        if (!pAttack.isAtacking && rig.velocity.x != 0)
+        if (!pAttack.isAtacking && GetComponent<PlayerMovement>().direction != 0)
         {
-            float directionToLook = rig.velocity.x > 0 ? 0 : 180;
+            float directionToLook = GetComponent<PlayerMovement>().direction > 0 ? 0 : 180;
             transform.localEulerAngles = new Vector3(transform.rotation.x, directionToLook, transform.rotation.z);
         }
     }
