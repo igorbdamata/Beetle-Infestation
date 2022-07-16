@@ -512,7 +512,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 8596640243658272642, guid: ce937b97a8ae34d48b4746a34efb250b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8117647, g: 0.05490196, b: 0.05490196, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -560,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7cb4036babe80742919268f87bf7966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalLife: 15
-  minScore: 1
+  totalLife: 30
+  minScore: 5
   maxScore: 10
   lifeBarFill: {fileID: 1813572937279299461}
 --- !u!114 &9130127165783221895
@@ -624,7 +624,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  speed: 500
+  speed: 400
 --- !u!95 &475522509183264498
 Animator:
   serializedVersion: 3
@@ -682,7 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 2
   attackRadius: 1
-  damage: 10
+  damage: 20
   attackPoint: {x: 1.63, y: -0.3}
   playerLayer:
     serializedVersion: 2

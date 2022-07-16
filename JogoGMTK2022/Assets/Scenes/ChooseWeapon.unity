@@ -472,7 +472,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -819,11 +819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613611559336862262, guid: 34bea5f8dc89baa46b9c910d1de60a1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6613611559336862262, guid: 34bea5f8dc89baa46b9c910d1de60a1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.33
+      value: -3.23
       objectReference: {fileID: 0}
     - target: {fileID: 6613611559336862262, guid: 34bea5f8dc89baa46b9c910d1de60a1f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreenPrefab: {fileID: 1294980168782619607, guid: 5e72f184de78b95429639ae726679b27, type: 3}
+  pauseMenu: {fileID: 0}
   gameOverScreen: {fileID: 0}
   scoreText: {fileID: 0}
   lifeBar: {fileID: 0}

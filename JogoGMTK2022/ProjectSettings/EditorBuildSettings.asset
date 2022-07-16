@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 27ce3ab0e8b7c4d4587822f87e5c694c
+  - enabled: 1
     path: Assets/Scenes/ChooseWeapon.unity
     guid: d00259d459a836742a5578121828797f
   - enabled: 1

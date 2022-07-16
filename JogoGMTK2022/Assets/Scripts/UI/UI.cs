@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
 {
     public static UI ui;
     [SerializeField] private GameObject loadingScreenPrefab;
+    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Image lifeBar;
@@ -23,7 +24,15 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
-        UpdateScoreText();
+        if (GameController.gc.currentScene == 2){ UpdateScoreText(); }
+    }
+
+    private void Update()
+    {
+        if(GameController.gc.currentScene==2 && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
 
     public void UpdateScoreText()
@@ -56,4 +65,16 @@ public class UI : MonoBehaviour
         gameOverScreen.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "Score: " + GameController.gc.playerScore;
         gameOverScreen.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "High score: " + DATA.d.playerHighScore;
     }
+
+    public void Pause()
+    {
+        GameController.gc.isPaused = !GameController.gc.isPaused;
+        Time.timeScale = GameController.gc.isPaused ? 0 : 1;
+        pauseMenu.SetActive(GameController.gc.isPaused);
+        foreach(Animator t in FindObjectsOfType<Animator>())
+        {
+            t.enabled = !GameController.gc.isPaused;
+        }
+    }
+
 }

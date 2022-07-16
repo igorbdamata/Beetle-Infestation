@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (GetComponent<PlayerLife>().isDead) { rig.velocity = Vector2.zero; return; }
+        if (Input.GetAxisRaw("Horizontal") == 0) { rig.velocity = new Vector2(0, rig.velocity.y); return; }
         direction = Input.GetAxisRaw("Horizontal");
         if (!canMove) { return; }
         Move();

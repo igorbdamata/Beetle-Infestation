@@ -17,7 +17,7 @@ public class EnemyAnimatorController : MonoBehaviour
 
     void Update()
     {
-        if (eAttack.isAtacking) { return; }
+        if (eAttack && eAttack.isAtacking) { return; }
         anim.Play(GetAnimation());
     }
 
