@@ -14,7 +14,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float maxSpawnCooldown = 30f;
 
     [SerializeField] private float minSpawnDistance = 10f;
+    [SerializeField] private int initialEnemies = 5;
     private List<Transform> initialSpawnedPoints = new List<Transform>();
+    private List<Transform> spawnPointsUseds = new List<Transform>();
 
     private Transform player;
 
@@ -24,13 +26,19 @@ public class EnemySpawner : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("EnemySpawnPoint").Length <= 1) { UI.ui.RetryLevel(); }
         spawnPoints.AddRange(GameObject.FindGameObjectsWithTag("EnemySpawnPoint").Select(n => n.transform).ToList());
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        for (int i = 0; i < initialEnemies; i++)
+        {
+            SpawnEnemy();
+        }
+        yield return new WaitForSeconds(1f);
         StartCoroutine(SpawnEnemies());
     }
 
-    public void OnEnemyDead()
+    public void OnEnemyDead(Transform enemy)
     {
+        spawnPointsUseds.RemoveAt(GameController.gc.enemies.IndexOf(enemy));
+        GameController.gc.enemies.Remove(enemy);
         SpawnEnemy();
-
     }
 
     IEnumerator SpawnEnemies()
@@ -39,7 +47,10 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
             yield return new WaitForSeconds(GameController.gc.finishedAllLevel ? Random.Range(minSpawnCooldown, maxSpawnCooldown) : 0);
-            while (GameController.gc.enemies.Count >= maxNumOfEnemies) { yield return new WaitForSeconds(1f); }
+            while (GameController.gc.enemies.Count >= maxNumOfEnemies || spawnPointsUseds.Count == spawnPoints.Count)
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
     private void SpawnEnemy()
@@ -47,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
         Transform spawnPoint = GetSpawnPoint();
         if (!spawnPoint) { return; }
         GameObject enemy = Instantiate(GetEnemyPrefab(), spawnPoint.position, transform.rotation);
+        GameController.gc.enemies.Add(enemy.transform);
     }
 
     GameObject GetEnemyPrefab()
@@ -60,41 +72,43 @@ public class EnemySpawner : MonoBehaviour
 
     Transform GetSpawnPoint()
     {
-        Transform spawnPoint = null;
+        Transform spawnPoint;
         float distance = 0;
         int securityLock = 0;
-        print(spawnPoints.Count);
         do
         {
-            if (GameController.gc.enemies.Count < 2)
+            if (GameController.gc.enemies.Count < 2 || !GameController.gc.finishedAllLevel)
             {
                 Transform nearestSpawnPoint = spawnPoints[0];
                 float lowerDistance = GC.d.GetDistance(nearestSpawnPoint.position, player.position); ;
                 foreach (Transform t in spawnPoints)
                 {
                     distance = GC.d.GetDistance(t.position, player.position);
-                    if (distance <= lowerDistance && distance <= minSpawnDistance && !initialSpawnedPoints.Contains(t))
+                    if (distance <= lowerDistance && distance > minSpawnDistance && !initialSpawnedPoints.Contains(t))
                     {
                         nearestSpawnPoint = t;
                         lowerDistance = distance;
                     }
                 }
-                if (initialSpawnedPoints.Contains(nearestSpawnPoint)) 
+                if (initialSpawnedPoints.Contains(nearestSpawnPoint))
                 {
                     GameController.gc.finishedAllLevel = true;
                     initialSpawnedPoints.Clear();
-                    return null; 
+                    return null;
                 }
                 initialSpawnedPoints.Add(nearestSpawnPoint);
                 spawnPoint = nearestSpawnPoint;
+                break;
             }
             else
             {
+                print("BBB");
                 GameController.gc.finishedAllLevel = true;
                 initialSpawnedPoints.Clear();
+                Debug.Log(spawnPoints.Count);
                 spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-                distance = GC.d.GetDistance(spawnPoint.position, player.position);
             }
+            distance = GC.d.GetDistance(spawnPoint.position, player.position);
             securityLock++;
             if (securityLock > 100)
             {
@@ -102,7 +116,8 @@ public class EnemySpawner : MonoBehaviour
                 break;
             }
         }
-        while (distance <= minSpawnDistance);
+        while (distance < minSpawnDistance);
+        spawnPointsUseds.Add(spawnPoint);
         return spawnPoint;
     }
 }

@@ -1911,10 +1911,11 @@ MonoBehaviour:
   - {fileID: 255107064083687496, guid: e8e0fddf34ba2114da834c67b2ef11d3, type: 3}
   - {fileID: 9130127165783221890, guid: 63edd8c0d756e274183a6a9fb50a6a40, type: 3}
   enemiesSpawnTax: 140000000a0000000a000000640000001e000000
-  maxNumOfEnemies: 30
-  minSpawnCooldown: 5
+  maxNumOfEnemies: 10
+  minSpawnCooldown: 10
   maxSpawnCooldown: 15
   minSpawnDistance: 15
+  initialEnemies: 5
 --- !u!4 &1582162264
 Transform:
   m_ObjectHideFlags: 0
