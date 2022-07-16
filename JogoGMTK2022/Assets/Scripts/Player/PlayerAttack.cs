@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isAtacking { get; private set; }
     bool canAttack = true;
+    bool alreadyAttaked=false;
 
     private void Start()
     {
@@ -44,12 +45,15 @@ public class PlayerAttack : MonoBehaviour
 
     public void SetDamage()
     {
+        print(alreadyAttaked);
+        if (alreadyAttaked) { return; }
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + (Vector3)attackPoint, attackRadius, enemiesLayer);
         if (enemies.Length == 0) { return; }
         Collider2D enemyToAttack = nearestEnemyIn(enemies);
         if (enemyToAttack != null)
         {
             enemyToAttack.GetComponent<EnemyLife>().AddDamage(weapon.damage);
+            alreadyAttaked = true;
         }
     }
 
@@ -80,6 +84,7 @@ public class PlayerAttack : MonoBehaviour
         {
             t.GetComponent<EnemyMovement>().SetMovement();
         }
+        alreadyAttaked = false;
         StartCoroutine(AttackCooldown());
     }
 
@@ -108,6 +113,11 @@ public class PlayerAttack : MonoBehaviour
         canAttack = true;
         anim.speed = 1;
         isAtacking = false;
+        alreadyAttaked = false;
+        foreach (Transform t in GameController.gc.enemies)
+        {
+            t.GetComponent<EnemyMovement>().SetMovement();
+        }
     }
 
     private void OnDrawGizmosSelected()
