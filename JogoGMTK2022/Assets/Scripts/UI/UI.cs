@@ -33,5 +33,10 @@ public class UI : MonoBehaviour
         gameOverScreen.SetActive(true);
         gameOverScreen.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text="Score: " + GameController.gc.playerScore;
         gameOverScreen.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text="High score: " + DATA.d.playerHighScore;
+        if(GameController.gc.playerScore> DATA.d.playerHighScore)
+        {
+            DATA.d.playerHighScore = GameController.gc.playerScore;
+            DATA.d.SaveMatchData();
+        }
     }
 }

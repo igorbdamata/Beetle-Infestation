@@ -23,6 +23,14 @@ public class DATA : MonoBehaviour
         LoadConfigData();
     }
 
+    public void SaveMatchData()
+    {
+        SaveSystem.SaveInt("playerHighScore", playerHighScore);
+    }
+    public void LoadMatchData()
+    {
+        playerHighScore = SaveSystem.LoadInt("playerHighScore", 0);
+    }
 
     public void SaveConfigData()
     {
