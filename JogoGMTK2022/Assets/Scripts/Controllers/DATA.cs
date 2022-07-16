@@ -8,10 +8,8 @@ public class DATA : MonoBehaviour
     public int playerHighScore { get; set; }
     public int currenteWeapon { get; set; }
     public List<Weapon> weapons;
-    [Header("Configs")]
-    public float musicVolume = 1;
-    public float SFXVolume = 1;
-    public float ambientationVolume = 1;
+    public float musicVolume { get; set; } = 1;
+    public float SFXVolume { get; set; } = 1;
 
     [Header("Verifiers")]
     public bool playedSplashScreen;
@@ -38,12 +36,10 @@ public class DATA : MonoBehaviour
     {
         SaveSystem.SaveFloat("musicVolume", musicVolume);
         SaveSystem.SaveFloat("SFXVolume", SFXVolume);
-        SaveSystem.SaveFloat("ambientationVolume", ambientationVolume);
     }
     public void LoadConfigData()
     {
         musicVolume = SaveSystem.LoadFloat("musicVolume", 1);
         SFXVolume = SaveSystem.LoadFloat("SFXVolume", 1);
-        ambientationVolume = SaveSystem.LoadFloat("ambientationVolume", 1);
     }
 }
