@@ -13,7 +13,16 @@ public class GameController : MonoBehaviour
     public bool isPaused { get; set; }
     public bool inLoading { get; set; }
     public int currentScene { get; private set; }
-    public int playerScore { get; set; }
+    private int _playerScore;
+    public int playerScore 
+    {
+        get => _playerScore;
+        set 
+        {
+            _playerScore = value;
+            UI.ui.UpdateScoreText();
+        }
+    }
 
     [Space(20)]
     [Header("Title screen")]

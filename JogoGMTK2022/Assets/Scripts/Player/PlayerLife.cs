@@ -29,6 +29,7 @@ public class PlayerLife : MonoBehaviour
         if (isInvencible || isDead) { return; }
         GetComponent<PlayerAttack>().StopAttack();
         currentLife -= damage;
+        UI.ui.UpdateLifeBar(this, totalLife);
         if (currentLife <= 0)
         {
             StartCoroutine(Dead());

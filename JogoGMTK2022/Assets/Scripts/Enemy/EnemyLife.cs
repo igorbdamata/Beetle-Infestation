@@ -24,6 +24,9 @@ public class EnemyLife : MonoBehaviour
         {
             isDead = true;
             GameController.gc.playerScore += Random.Range(minScore, maxScore);
+            Destroy(GetComponent<EnemyDamageOnTouch>());
+            Destroy(GetComponent<Collider2D>());
+            Destroy(GetComponent<Rigidbody2D>());
             Destroy(gameObject, 3f);
             return;
         }
