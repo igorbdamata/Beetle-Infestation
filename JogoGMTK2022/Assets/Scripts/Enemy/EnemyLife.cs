@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyLife : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnemyLife : MonoBehaviour
     [SerializeField] private int totalLife;
     [SerializeField] private int minScore = 1;
     [SerializeField] private int maxScore = 10;
+    [SerializeField] private GameObject lifeBarFill;
     public int currentLife { get; private set; }
 
     public bool isDead { get; private set; }
@@ -15,8 +17,22 @@ public class EnemyLife : MonoBehaviour
 
     private void Start()
     {
+        GetComponentInChildren<Canvas>().worldCamera = GameController.gc.mainCamera;
         GameController.gc.enemies.Add(transform);
         currentLife = totalLife;
+    }
+
+    private void Update()
+    {
+        if (currentLife < totalLife)
+        {
+            lifeBarFill.transform.parent.gameObject.SetActive(true);
+            lifeBarFill.GetComponent<Image>().fillAmount = (float)currentLife / (float)totalLife;
+        }
+        else
+        {
+            lifeBarFill.transform.parent.gameObject.SetActive(false);
+        }
     }
     public void AddDamage(int damage)
     {
