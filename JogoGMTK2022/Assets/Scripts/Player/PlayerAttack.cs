@@ -5,7 +5,7 @@ using GC;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Weapon weapon;
+    private Weapon weapon;
     [SerializeField] private SpriteRenderer weaponSprite;
     [SerializeField] private float attackRadius;
     [SerializeField] private Vector2 attackPoint;
@@ -18,11 +18,13 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        weapon = DATA.d.weapons[DATA.d.currenteWeapon];
         weaponSprite.GetComponent<GenericAnimator>().sprites.AddRange(weapon.sprite);
     }
 
     private void Update()
     {
+        if (GetComponent<PlayerLife>().isDead) { return; }
         if (Input.GetKeyDown(KeyCode.E) && canAttack && !GetComponent<PlayerLife>().isInvencible)
         {
             anim.Play("Attack");
@@ -33,6 +35,10 @@ public class PlayerAttack : MonoBehaviour
     {
         isAtacking = true;
         canAttack = false;
+        foreach(Transform t in GameController.gc.enemies)
+        {
+            t.GetComponent<EnemyMovement>().StopMovement();
+        }
         StartCoroutine(AnimationSpeedController());
     }
 
@@ -70,6 +76,10 @@ public class PlayerAttack : MonoBehaviour
     public void EndAttack()
     {
         isAtacking = false;
+        foreach (Transform t in GameController.gc.enemies)
+        {
+            t.GetComponent<EnemyMovement>().SetMovement();
+        }
         StartCoroutine(AttackCooldown());
     }
 

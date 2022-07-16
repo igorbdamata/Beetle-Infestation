@@ -27,8 +27,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     string GetAnimation()
     {
-        if (pLife.isInvencible) { return "Idle"; }
         if (pLife.isDead) { return "Idle"; }
+        if (pLife.isInvencible) { return "Idle"; }
         if (!pJump.inGround) { return "Jump"; }
         if (pMovement.isMoving) { return "Walk"; }
         return "Idle";

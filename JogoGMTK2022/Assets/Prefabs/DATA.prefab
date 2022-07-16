@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ef97fee446cb045a6a2204c66a7fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 11400000, guid: 904a926a5b8a6e341a4334c20dbe7555, type: 2}
+  - {fileID: 11400000, guid: 5dedacdb46947274caebd5602b613ddd, type: 2}
+  - {fileID: 11400000, guid: 853c36faf2504fb40a7d0ebbdf16e74a, type: 2}
   musicVolume: 1
   SFXVolume: 1
   ambientationVolume: 1

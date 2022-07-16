@@ -15,6 +15,7 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
+        if (GetComponent<PlayerLife>().isDead) { return; }
         if (!pAttack.isAtacking && rig.velocity.x != 0)
         {
             float directionToLook = rig.velocity.x > 0 ? 0 : 180;

@@ -7,17 +7,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
-{ 
+{
     public static GameController gc;
 
     public bool isPaused { get; set; }
     public bool inLoading { get; set; }
+    public bool finishedAllLevel { get; set; }
+    public bool finishedGrounds { get; set; }
     public int currentScene { get; private set; }
     private int _playerScore;
-    public int playerScore 
+    public int playerScore
     {
         get => _playerScore;
-        set 
+        set
         {
             _playerScore = value;
             UI.ui.UpdateScoreText();
@@ -30,7 +32,9 @@ public class GameController : MonoBehaviour
     public EventSystem eventSystem { get; private set; }
     public Camera mainCamera { get; private set; }
     public CameraShakeController camShake { get; private set; }
-    
+
+    public List<Transform> enemies { get; set; } = new List<Transform>();
+
 
     void Awake()
     {
@@ -45,8 +49,8 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        musicVolSlider.value = DATA.d.musicVolume;
-        SFXVolSlider.value = DATA.d.SFXVolume;
-        ambientationVolSlider.value = DATA.d.ambientationVolume;
+        /*   musicVolSlider.value = DATA.d.musicVolume;
+            SFXVolSlider.value = DATA.d.SFXVolume;
+            ambientationVolSlider.value = DATA.d.ambientationVolume;*/
     }
 }

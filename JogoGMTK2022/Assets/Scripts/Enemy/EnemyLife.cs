@@ -6,8 +6,8 @@ public class EnemyLife : MonoBehaviour
 {
 
     [SerializeField] private int totalLife;
-    [SerializeField] private int minScore=1;
-    [SerializeField] private int maxScore=10;
+    [SerializeField] private int minScore = 1;
+    [SerializeField] private int maxScore = 10;
     public int currentLife { get; private set; }
 
     public bool isDead { get; private set; }
@@ -15,6 +15,7 @@ public class EnemyLife : MonoBehaviour
 
     private void Start()
     {
+        GameController.gc.enemies.Add(transform);
         currentLife = totalLife;
     }
     public void AddDamage(int damage)
@@ -27,6 +28,10 @@ public class EnemyLife : MonoBehaviour
             Destroy(GetComponent<EnemyDamageOnTouch>());
             Destroy(GetComponent<Collider2D>());
             Destroy(GetComponent<Rigidbody2D>());
+            Destroy(GetComponent<EnemyMovement>());
+            gameObject.layer = 0;
+            GameController.gc.enemies.Remove(transform);
+            FindObjectOfType<EnemySpawner>().OnEnemyDead();
             Destroy(gameObject, 3f);
             return;
         }

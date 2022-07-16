@@ -11,11 +11,14 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float speed = 500;
     Rigidbody2D rig;
     int direction = 1;
-    private bool canMove = true;
+    private bool canMove = false;
 
-    private void Start()
+    private IEnumerator Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        while (!GameController.gc.finishedAllLevel) { yield return new WaitForEndOfFrame(); }
+        yield return new WaitForSeconds(0.1f);
+        canMove = true;
     }
 
     private void Update()
@@ -43,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
         foreach (Vector2 ground in wallDetects)
         {
             if (ground.x > 0 && direction < 0 || ground.x < 0 && direction > 0) { continue; }
-            Collider2D col = Physics2D.OverlapCircle(transform.position + (Vector3)ground, 0.1f,wallLayer);
+            Collider2D col = Physics2D.OverlapCircle(transform.position + (Vector3)ground, 0.1f, wallLayer);
             if (col != null)
             {
                 direction *= -1;
