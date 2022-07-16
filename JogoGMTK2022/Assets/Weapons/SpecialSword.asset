@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpecialSword
   m_EditorClassIdentifier: 
   weaponDamage: 15
-  weaponAttackCooldown: 1.5
+  weaponAttackCooldown: 0
   weaponAttackAnimationSpeed:
     serializedVersion: 2
     m_Curve:

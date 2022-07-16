@@ -45,7 +45,7 @@ public class UI : MonoBehaviour
         lifeBar.fillAmount = (float)playerLife.currentLife / (float)totalLife;
     }
 
-    public void RetryLevel() { LoadScene(GameController.gc.currentScene); }
+    public void RetryLevel() { LoadScene(1); }
 
     public void LoadScene(int index)
     {

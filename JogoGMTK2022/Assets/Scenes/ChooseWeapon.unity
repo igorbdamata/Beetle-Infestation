@@ -286,9 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsSprites:
-  - {fileID: 8659984552620174791, guid: ac4aa9db42935994ea562efa6429c618, type: 3}
-  - {fileID: 712035800519618848, guid: c4fb608db52a6424697d2cd2f4288ff5, type: 3}
-  - {fileID: 7181427078238851902, guid: 77264f21aed3b8a47bcde177c82c3fd4, type: 3}
+  - {fileID: 21300000, guid: 626208d827945974dba2b78a465aee14, type: 3}
+  - {fileID: 21300000, guid: 99326c886e4b8a04b9e856c1036034e7, type: 3}
+  - {fileID: 21300000, guid: 9e3eedc85b89b624b94d18389a9bdeba, type: 3}
   goToLevelBTN: {fileID: 1003932680}
 --- !u!61 &986614921
 BoxCollider2D:

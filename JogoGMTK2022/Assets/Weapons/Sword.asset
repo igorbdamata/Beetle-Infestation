@@ -13,27 +13,27 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   weaponDamage: 10
-  weaponAttackCooldown: 1
+  weaponAttackCooldown: 0
   weaponAttackAnimationSpeed:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.012500763
+      value: 1.0499878
+      inSlope: -0.00021724708
+      outSlope: -0.00021724708
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.9958191
+      value: 1.0497742
+      inSlope: -0.00021724708
+      outSlope: -0.00021724708
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
