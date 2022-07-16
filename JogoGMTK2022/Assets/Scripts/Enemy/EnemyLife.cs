@@ -49,8 +49,8 @@ public class EnemyLife : MonoBehaviour
             FindObjectOfType<EnemySpawner>().OnEnemyDead(transform);
             Destroy(gameObject, 3f);
             return;
-        }
-        StopCoroutine(DamageCooldown());
+        } 
+       
         StartCoroutine(DamageCooldown());
     }
 

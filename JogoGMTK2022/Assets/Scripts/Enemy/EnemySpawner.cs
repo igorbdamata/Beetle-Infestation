@@ -15,7 +15,6 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float minSpawnDistance = 10f;
     [SerializeField] private int initialEnemies = 5;
-    private List<Transform> initialSpawnedPoints = new List<Transform>();
     private List<Transform> spawnPointsUseds = new List<Transform>();
 
     private Transform player;
@@ -75,28 +74,23 @@ public class EnemySpawner : MonoBehaviour
         Transform spawnPoint;
         float distance = 0;
         int securityLock = 0;
+        List<Transform> pointsCanSpawn = spawnPoints.Where(n => !spawnPointsUseds.Contains(n)).ToList();
         do
         {
             if (GameController.gc.enemies.Count < 2 || !GameController.gc.finishedAllLevel)
             {
-                Transform nearestSpawnPoint = spawnPoints[0];
-                float lowerDistance = GC.d.GetDistance(nearestSpawnPoint.position, player.position); ;
-                foreach (Transform t in spawnPoints)
+                Transform nearestSpawnPoint = null;
+                float lowerDistance = 999;
+                foreach (Transform t in pointsCanSpawn)
                 {
                     distance = GC.d.GetDistance(t.position, player.position);
-                    if (distance <= lowerDistance && distance > minSpawnDistance && !initialSpawnedPoints.Contains(t))
+                    if (!nearestSpawnPoint || distance <= lowerDistance && distance > minSpawnDistance)
                     {
                         nearestSpawnPoint = t;
                         lowerDistance = distance;
                     }
                 }
-                if (initialSpawnedPoints.Contains(nearestSpawnPoint))
-                {
-                    GameController.gc.finishedAllLevel = true;
-                    initialSpawnedPoints.Clear();
-                    return null;
-                }
-                initialSpawnedPoints.Add(nearestSpawnPoint);
+                spawnPointsUseds.Add(nearestSpawnPoint);
                 spawnPoint = nearestSpawnPoint;
                 break;
             }
@@ -104,9 +98,9 @@ public class EnemySpawner : MonoBehaviour
             {
                 print("BBB");
                 GameController.gc.finishedAllLevel = true;
-                initialSpawnedPoints.Clear();
                 Debug.Log(spawnPoints.Count);
-                spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+
+                spawnPoint = pointsCanSpawn[Random.Range(0, pointsCanSpawn.Count)];
             }
             distance = GC.d.GetDistance(spawnPoint.position, player.position);
             securityLock++;

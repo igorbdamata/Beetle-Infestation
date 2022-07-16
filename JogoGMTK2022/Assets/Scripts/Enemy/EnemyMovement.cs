@@ -20,9 +20,10 @@ public class EnemyMovement : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         eLife = GetComponent<EnemyLife>();
         eAttack = GetComponent<EnemyAttack>();
+        canMove = true;
         while (!GameController.gc.finishedAllLevel) { yield return new WaitForEndOfFrame(); }
         yield return new WaitForSeconds(0.1f);
-        canMove = true;
+        
     }
 
     private void FixedUpdate()

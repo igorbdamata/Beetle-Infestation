@@ -7,17 +7,21 @@ public class EnemyAnimatorController : MonoBehaviour
     private Animator anim;
     private EnemyAttack eAttack;
     private EnemyLife eLife;
+    private PlayerAttack pAtk;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         eAttack = GetComponent<EnemyAttack>();
         eLife = GetComponent<EnemyLife>();
+        pAtk = FindObjectOfType<PlayerAttack>();
     }
 
     void Update()
     {
-        if (eAttack && eAttack.isAtacking) { return; }
+        if (eAttack && eAttack.isAtacking && !pAtk.isAtacking) { return; }
+        if (eAttack && eAttack.isAtacking) { eAttack.StopAttack(); }
+
         anim.Play(GetAnimation());
     }
 

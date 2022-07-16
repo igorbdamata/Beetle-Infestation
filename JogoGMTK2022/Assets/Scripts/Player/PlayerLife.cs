@@ -22,7 +22,7 @@ public class PlayerLife : MonoBehaviour
     private void Start()
     {
         currentLife = totalLife;
-        if (blinkTimes % 2 != 1) { blinkTimes++; }
+        if (blinkTimes % 2 != 0) { blinkTimes--; }
     }
     public void AddDamage(int damage)
     {
@@ -65,6 +65,10 @@ public class PlayerLife : MonoBehaviour
             }
             timeWaited += timeToWait;
             yield return new WaitForSeconds(timeToWait);
+        }
+        for (int i = 0; i < spritesToBlink.Length; i++)
+        {
+            spritesToBlink[i].enabled = true;
         }
         isInvencible = false;
     }
