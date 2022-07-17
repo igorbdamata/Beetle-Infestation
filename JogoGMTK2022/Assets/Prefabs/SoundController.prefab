@@ -307,9 +307,9 @@ MonoBehaviour:
   giveDamageSFX: {fileID: 8300000, guid: 75290c3a940a86b4e81f78f9e549e3e3, type: 3}
   jumpSFX: {fileID: 8300000, guid: 662dd4b9d0cbaa044aea377d834aa55b, type: 3}
   hitDiceSFX: {fileID: 8300000, guid: 99238bf2855869343a3b9c5e5fb818cb, type: 3}
-  titleScreenMusic: {fileID: 8300000, guid: 07a8aa728717b4b4bb4ddb7e4a5dd589, type: 3}
-  gamePlayMusic: {fileID: 8300000, guid: 626ba2efd8ef3a9489285e2fc9d163de, type: 3}
-  gameOverMusic: {fileID: 8300000, guid: dfd19cf624cd5574293153e801163754, type: 3}
+  titleScreenMusic: {fileID: 8300000, guid: 82020a0ed2aca964eac7dd928e1c5f30, type: 3}
+  gamePlayMusic: {fileID: 8300000, guid: 50499a6ecb1948e4c80c897bb603f1f5, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 797e9926c0d42f2499e52d18f4fcfe94, type: 3}
 --- !u!1 &6668349333172150556
 GameObject:
   m_ObjectHideFlags: 0
