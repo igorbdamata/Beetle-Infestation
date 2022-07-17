@@ -15,11 +15,15 @@ public class EnemyMovement : MonoBehaviour
     EnemyLife eLife;
     EnemyAttack eAttack;
 
-    private IEnumerator Start()
+    private void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
         eLife = GetComponent<EnemyLife>();
         eAttack = GetComponent<EnemyAttack>();
+    }
+
+    private IEnumerator Start()
+    {
         canMove = true;
         while (!GameController.gc.finishedAllLevel) { yield return new WaitForEndOfFrame(); }
         yield return new WaitForSeconds(0.1f);
@@ -64,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
     public void StopMovement()
     {
         canMove = false;
-        rig.velocity = Vector2.zero;
+        if (rig) { rig.velocity = Vector2.zero; }
     }
 
     public void SetMovement()
