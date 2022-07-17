@@ -4321,7 +4321,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 15.374077, z: 0, w: 20.498703}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1526599280
@@ -5548,8 +5548,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 585ff6e780ca8eb48aeea1190b972664, type: 2}
+  m_sharedMaterial: {fileID: -3288951407664375253, guid: 585ff6e780ca8eb48aeea1190b972664, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5847,7 +5847,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 15.374008, z: 0, w: 23.915127}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1981239229
@@ -6505,5 +6505,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6668349333040218427, guid: 3c1b9a9bd58a0084fa1b66a0b3b1a84d, type: 3}
+      propertyPath: giveDamageSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 834f6b9e9b5a95d4589ddc1e28afec55, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1b9a9bd58a0084fa1b66a0b3b1a84d, type: 3}
