@@ -19,7 +19,8 @@ public class GroundGenerator : MonoBehaviour
     public Transform GenerateGround(Vector2 position)
     {
         GameObject ground = Instantiate(defaultGroundPrefab, position, transform.rotation);
-        Vector2 platformSize = new Vector2(Random.Range(minPlatformSize.x, maxPlatformSize.x), Random.Range(minPlatformSize.y, maxPlatformSize.y));
+        Vector2 platformSize = new Vector2(Mathf.Round(Random.Range(minPlatformSize.x, maxPlatformSize.x)),
+                                           Mathf.Round(Random.Range(minPlatformSize.y, maxPlatformSize.y)));
         ground.GetComponent<SpriteRenderer>().size = platformSize;
         ground.GetComponent<BoxCollider2D>().size = platformSize;
 

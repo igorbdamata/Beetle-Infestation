@@ -49,8 +49,10 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        /*   musicVolSlider.value = DATA.d.musicVolume;
+        if (currentScene == 0)
+        {
+            musicVolSlider.value = DATA.d.musicVolume;
             SFXVolSlider.value = DATA.d.SFXVolume;
-            ambientationVolSlider.value = DATA.d.ambientationVolume;*/
+        }
     }
 }

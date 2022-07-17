@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalLife: 100
-  invencibleCooldown: 2
+  invencibleCooldown: 1
   blinkTimes: 5
   spritesToBlink:
   - {fileID: 6613611560093472398}

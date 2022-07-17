@@ -19,7 +19,6 @@ public class EnemyLife : MonoBehaviour
     private void Start()
     {
         GetComponentInChildren<Canvas>().worldCamera = GameController.gc.mainCamera;
-        GameController.gc.enemies.Add(transform);
         currentLife = totalLife;
     }
 
@@ -47,12 +46,11 @@ public class EnemyLife : MonoBehaviour
             Destroy(GetComponent<Rigidbody2D>());
             Destroy(GetComponent<EnemyMovement>());
             gameObject.layer = 0;
-            GameController.gc.enemies.Remove(transform);
-            FindObjectOfType<EnemySpawner>().OnEnemyDead();
+            FindObjectOfType<EnemySpawner>().OnEnemyDead(transform);
             Destroy(gameObject, 3f);
             return;
-        }
-        StopCoroutine(DamageCooldown());
+        } 
+       
         StartCoroutine(DamageCooldown());
     }
 

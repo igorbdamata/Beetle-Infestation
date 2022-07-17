@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Image lifeBar;
+    private PlayerLife pLife;
 
     private void Awake()
     {
@@ -24,12 +25,12 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
-        if (GameController.gc.currentScene == 2){ UpdateScoreText(); }
+        if (GameController.gc.currentScene == 2){ UpdateScoreText();pLife = FindObjectOfType<PlayerLife>(); }
     }
 
     private void Update()
     {
-        if(GameController.gc.currentScene==2 && Input.GetKeyDown(KeyCode.Escape))
+        if(GameController.gc.currentScene==2 && Input.GetKeyDown(KeyCode.Escape) && !pLife.isDead)
         {
             Pause();
         }
