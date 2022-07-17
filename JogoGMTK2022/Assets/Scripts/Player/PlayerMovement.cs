@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rig;
     [SerializeField] private AnimationCurve accelerationCurve;
     private float timer;
-    public bool isMoving { get => direction != 0; }
+    public bool isMoving { get => Input.GetAxisRaw("Horizontal") != 0; }
     bool canMove = true;
     public float direction { get; private set; }
 
