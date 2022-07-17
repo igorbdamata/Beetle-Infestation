@@ -27,11 +27,13 @@ public class PlayerLife : MonoBehaviour
     public void AddDamage(int damage)
     {
         if (isInvencible || isDead) { return; }
+        SoundController.sc.PlaySFX(SoundController.sc.takeDamageSFX);
         GetComponent<PlayerAttack>().StopAttack();
         currentLife -= damage;
         UI.ui.UpdateLifeBar(this, totalLife);
         if (currentLife <= 0)
         {
+            SoundController.sc.PlayMusic(SoundController.sc.gameOverMusic);
             StartCoroutine(Dead());
             return;
         }

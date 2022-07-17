@@ -38,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isAtacking = true;
         canAttack = false;
+        SoundController.sc.PlaySFX(SoundController.sc.attackSFX);
         foreach (Transform t in GameController.gc.enemies)
         {
             t.GetComponent<EnemyMovement>().StopMovement();
@@ -56,7 +57,6 @@ public class PlayerAttack : MonoBehaviour
             enemyToAttack.GetComponent<EnemyLife>().AddDamage(weapon.damage);
             alreadyAttacked = true;
         }
-
     }
 
 

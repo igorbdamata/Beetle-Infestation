@@ -37,6 +37,7 @@ public class PlayerJump : MonoBehaviour
 
     void Jump()
     {
+        SoundController.sc.PlaySFX(SoundController.sc.jumpSFX);
         rig.AddForce(Vector2.up * jumpForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
         isJumping = true;
     }

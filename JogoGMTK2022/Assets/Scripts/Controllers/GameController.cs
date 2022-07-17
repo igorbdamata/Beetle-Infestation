@@ -53,6 +53,11 @@ public class GameController : MonoBehaviour
         {
             musicVolSlider.value = DATA.d.musicVolume;
             SFXVolSlider.value = DATA.d.SFXVolume;
+            SoundController.sc.PlayMusic(SoundController.sc.titleScreenMusic);
+        }
+        else if(currentScene==1)
+        {
+            SoundController.sc.PlayMusic(SoundController.sc.gamePlayMusic);
         }
     }
 }

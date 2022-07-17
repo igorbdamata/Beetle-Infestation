@@ -20,7 +20,7 @@ public class DATA : MonoBehaviour
         if (d == null) { d = this; }
         else { Destroy(gameObject); }
         DontDestroyOnLoad(gameObject);
-        LoadConfigData();
+        LoadConfigData(); LoadMatchData();
     }
 
     public void SaveMatchData()

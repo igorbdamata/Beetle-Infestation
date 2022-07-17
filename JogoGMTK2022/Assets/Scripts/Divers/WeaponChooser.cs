@@ -29,6 +29,7 @@ public class WeaponChooser : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         StopAllCoroutines();
+        SoundController.sc.PlaySFX(SoundController.sc.hitDiceSFX);
         DATA.d.currenteWeapon = currentWeapon;
         goToLevelBTN.SetActive(true);
     }

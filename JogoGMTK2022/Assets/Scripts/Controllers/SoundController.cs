@@ -5,7 +5,8 @@ public class SoundController : MonoBehaviour
     public static SoundController sc;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
-
+    public AudioClip attackSFX, takeDamageSFX, giveDamageSFX, jumpSFX, hitDiceSFX;
+    public AudioClip titleScreenMusic, gamePlayMusic, gameOverMusic;
 
     private void Awake()
     {

@@ -37,6 +37,7 @@ public class EnemyLife : MonoBehaviour
     public void AddDamage(int damage)
     {
         currentLife -= damage;
+        SoundController.sc.PlaySFX(SoundController.sc.giveDamageSFX);
         if (currentLife <= 0 && !isDead)
         {
             isDead = true;
