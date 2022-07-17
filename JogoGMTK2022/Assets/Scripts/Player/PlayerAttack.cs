@@ -47,11 +47,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void SetDamage()
     {
-        print(alreadyAttacked);
         if (alreadyAttacked) { return; }
-        print("a");
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position + (Vector3)attackPoint * pMovement.direction, attackRadius, enemiesLayer);
-        Debug.Log(enemies.Length + " AAA");
         if (enemies.Length == 0) { return; }
         Collider2D enemyToAttack = nearestEnemyIn(enemies);
         if (enemyToAttack != null)

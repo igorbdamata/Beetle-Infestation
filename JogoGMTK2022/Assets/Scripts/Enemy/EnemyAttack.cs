@@ -11,6 +11,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     Animator anim;
     EnemyMovement eMovement;
+    PlayerAttack pAtk;
     public bool isAtacking { get; private set; }
     bool canAttack = true;
     bool alreadyAttacked = false;
@@ -19,11 +20,12 @@ public class EnemyAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         eMovement = GetComponent<EnemyMovement>();
+        pAtk = FindObjectOfType<PlayerAttack>();
     }
 
     private void Update()
     {
-        if (GetComponent<EnemyLife>().isDead) { return; }
+        if (GetComponent<EnemyLife>().isDead|| pAtk.isAtacking) { return; }
         Collider2D player = Physics2D.OverlapCircle(transform.position + (Vector3)attackPoint * eMovement.direction, attackRadius, playerLayer);
         if (player != null && canAttack)
         {
@@ -48,26 +50,6 @@ public class EnemyAttack : MonoBehaviour
             alreadyAttacked = true;
         }
 
-    }
-
-    Collider2D nearestEnemyIn(Collider2D[] enemies)
-    {
-        float lowerDistance = 999;
-        Collider2D enemyToAttack = null;
-        foreach (Collider2D c in enemies)
-        {
-            if (c == null) { continue; }
-
-            if (enemyToAttack == null) { enemyToAttack = c; continue; }
-
-            float distance = GC.d.GetDistance(transform.position, enemyToAttack.transform.position);
-            if (distance <= lowerDistance)
-            {
-                lowerDistance = distance;
-                enemyToAttack = c;
-            }
-        }
-        return enemyToAttack;
     }
 
     public void EndAttack()

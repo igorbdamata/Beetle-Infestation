@@ -73,44 +73,30 @@ public class EnemySpawner : MonoBehaviour
     {
         Transform spawnPoint;
         float distance = 0;
-        int securityLock = 0;
-        List<Transform> pointsCanSpawn = spawnPoints.Where(n => !spawnPointsUseds.Contains(n)).ToList();
-        do
-        {
-            if (GameController.gc.enemies.Count < 2 || !GameController.gc.finishedAllLevel)
-            {
-                Transform nearestSpawnPoint = null;
-                float lowerDistance = 999;
-                foreach (Transform t in pointsCanSpawn)
-                {
-                    distance = GC.d.GetDistance(t.position, player.position);
-                    if (!nearestSpawnPoint || distance <= lowerDistance && distance > minSpawnDistance)
-                    {
-                        nearestSpawnPoint = t;
-                        lowerDistance = distance;
-                    }
-                }
-                spawnPointsUseds.Add(nearestSpawnPoint);
-                spawnPoint = nearestSpawnPoint;
-                break;
-            }
-            else
-            {
-                print("BBB");
-                GameController.gc.finishedAllLevel = true;
-                Debug.Log(spawnPoints.Count);
+        List<Transform> pointsCanSpawn = spawnPoints.Where(n => !spawnPointsUseds.Contains(n) &&
+                                            GC.d.GetDistance(n.position, player.position) > minSpawnDistance).ToList();
+        if (pointsCanSpawn.Count == 0) { return null; }
 
-                spawnPoint = pointsCanSpawn[Random.Range(0, pointsCanSpawn.Count)];
-            }
-            distance = GC.d.GetDistance(spawnPoint.position, player.position);
-            securityLock++;
-            if (securityLock > 100)
+        if (GameController.gc.enemies.Count < 2 || !GameController.gc.finishedAllLevel)
+        {
+            Transform nearestSpawnPoint = null;
+            float lowerDistance = 999;
+            foreach (Transform t in pointsCanSpawn)
             {
-                print("Break2");
-                break;
+                distance = GC.d.GetDistance(t.position, player.position);
+                if (!nearestSpawnPoint || distance <= lowerDistance)
+                {
+                    nearestSpawnPoint = t;
+                    lowerDistance = distance;
+                }
             }
+            if (spawnPointsUseds.Count == 2) { GameController.gc.finishedAllLevel = true; }
+            spawnPoint = nearestSpawnPoint;
         }
-        while (distance < minSpawnDistance);
+        else
+        {
+            spawnPoint = pointsCanSpawn[Random.Range(0, pointsCanSpawn.Count)];
+        }
         spawnPointsUseds.Add(spawnPoint);
         return spawnPoint;
     }
